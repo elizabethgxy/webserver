@@ -1,0 +1,116 @@
+
+  <html>
+  <body>
+  <head>
+     <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+  #header {
+      background-color:black;
+      color:white;
+      text-align:center;
+      padding:5px;
+  }
+  #nav {
+      line-height:30px;
+      background-color:#eeeeee;
+      height:300px;
+      width:100px;
+      float:left;
+      padding:5px;	      
+  }
+  #article {
+      width:500px;
+      float:left;
+      padding:10px;	 	 
+  }
+  #aside{
+      width:400px;
+      height:600px;
+      float:right;
+      background-color:#eeeeee;
+      padding:10px;
+  }
+  #footer {
+      background-color:black;
+      color:white;
+      clear:both;
+      text-align:center;
+     padding:5px;	 	 
+  }
+  </style>
+  </head>
+  <body>
+  <div id="header">
+  <h1>Dispicable Me Story</h1>
+  </div>
+  <script language="javascript" type="text/javascript" src="jquery.js"></script>
+    <script language="javascript" type="text/javascript">
+    $(function () 
+    {
+      $.ajax({                                      
+        url: 'api.php',                         
+        data: "",                      
+        dataType: 'json',                    
+        success: function(data)         
+        {        
+          finishedTask =parseInt(data[5]); 
+          mode1=parseInt(data[2]);     
+        } 
+      });
+    }); 
+
+  function myFunction(){
+   if(mode1==1)  location.href="/minions/constant.html";
+     else if (mode1==2) location.href="/minions/peerprediction1.html";
+     else if (mode1==3) location.href="/minions/peerprediction2.html";
+     else if (mode1==4) location.href="/minions/peerprediction3.html";
+     else if(mode1==5)  location.href="/minions/peerprediction4.html";
+     else if (mode1==6) location.href="/minions/bayes.html";
+
+       return location.href;     
+      }
+    </script>
+  <div id="article">
+  <h2>Dispicable Me</h2>
+  <p>
+  You are given <b>three batches</b> of pictures, each of them containing 15 pictures of minions. Your task is to find out for each picture whether the picture contains a <b>one-eyed minion</b>. 
+  <br />
+  <br />
+  To make your task more difficult, we cover the pictures with a piece of gray cloth, which you can remove using your mouse (click and move), as shown on the right.  Once substantial amount of the cloth is removed from a picture, you can easily see if a one-eyed minion is present in the picture. 
+  <br/ >
+  <br/ >
+  We validate your performance using point systems, and each batch of pictures has a different point system. 
+  <b>Important</b>: Your bonus payment depends on the total number of points you earn, so it is crucial that you read 
+  carefully the descriptions of the point systems, which are provided at the beginning of each batch. 
+  <br />
+  <br />
+  </p>
+  <br />
+  <br />
+  <br />
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript">
+     $(document).ready(function(){
+              $("#next").click(function(){
+                      myFunction();
+                          });
+                      });
+  </script>
+
+    <a class="button" id="next"> <span>&#10003</span>Next</a>
+  </div>
+
+  <div id="aside">
+  <img src="/minions/3_erase.jpg" width="400" height="300">
+  <img src="3.jpg" width="400" height="300">
+  </html>
+
+  </div>
+  <div id="footer">
+  welcome to play the game
+  </div>
+  </form>
+  </body>
+  </html>
+
+

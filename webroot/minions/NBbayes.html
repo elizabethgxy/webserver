@@ -1,0 +1,123 @@
+   <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+     
+    header {
+        background-color:black;
+        color:white;
+        text-align:center;
+        padding:5px;   
+    }
+    nav {
+        line-height:30px;
+        background-color:#eeeeee;
+        height:300px;
+        width:200px;
+        float:left;
+        padding:10px;       
+    }
+    section {
+        width:700px;
+        float:left;
+        padding:10px;    
+    }
+    footer {
+        background-color:black;
+        color:white;
+        clear:both;
+        text-align:center;
+        padding:5px;     
+    }
+    </style>
+    </head>
+
+    <body>
+
+    <header>
+    <h1>Game Tutorial</h1>
+    </header>
+
+    <script language="javascript" type="text/javascript" src="jquery.js"></script>
+      <script language="javascript" type="text/javascript">
+      $(function () 
+      {
+        $.ajax({                                      
+          url: 'NBapi.php',                         
+          data: "",                       
+          dataType: 'json',                 
+          success: function(data)          
+          {
+            finishedTask =parseInt(data[5]); 
+            mode1=parseInt(data[2]);
+            mode2=parseInt(data[3]);
+            mode3=parseInt(data[4]);     
+          } 
+        });
+      }); 
+
+    function myFunction(){
+     var rate=$("input[name=test]:checked").val();
+     var rate2=$("input[name=test2]:checked").val();
+      if(rate==0&&rate2==1)
+    location.href="/minions/NBbayes.php";
+    else {
+      alert("wrong answer!");
+      location.href="/minions/NBbayes.html";
+    }
+         return location.href;  
+        
+        }   
+      </script>
+    <nav>
+    <img src="hint.jpg" width="200" height="300">
+    </nav>
+    <section>
+    <p>
+      For this batch of pictures, we ask you for each picture to provide us with: <br />
+      &#9830 Your answer regarding whether there is a one-eyed minion.<br />
+      &#9830 Your prediction about the percentage of workers who have the same answer as you do.<br />
+      Your total reward for labeling a picture is a sum of two rewards.<br />
+      <br />
+      <b>Reward 1</b>: To estimate the quality of your answer, we randomly choose another peer worker who labeled the same picture and reward you with:</br >
+      &#9830 <b>0 point</b> if you and your peer have different answers.<br />
+      &#9830 <b>50/q  points  </b> if you and your peer have the same answers, where <b>q is the prediction of your peer.</b></br >
+      <b>For example</b>, suppose that your peer answers 'Yes, there is a one-eyed minion', and predicts that 80% of workers have the same answer as she does, then you obtain 50/80 = 0.625 for reporting 'Yes, there is a one-eyed minion'. </br >
+      <br />
+      <b>Reward 2</b>:  To estimate the quality of <b>your prediction p</b>, we randomly choose another peer worker who labeled the same picture and reward you with:</br >
+      &#9830 <b>1 - (1-p/100)<sup>2</sup> points </b>if you and your peer have same answer.<br />
+      &#9830 <b>1 - (p/100)<sup>2</sup> points </b> if you and your peer have different answers.<br />
+      <b>For example</b>, suppose your answer is 'Yes, there is a one-eyed minion' and you predict that 80% of workers have the same answer as you do. Then, if your peer answers,'Yes, there is a one-eyed minion', you obtain 1-(1-0.8)<sup>2</sup> = 0.96. Otherwise, if you peer answers 'No, there is no one-eyed minions', you obtain 1-(1-0.2)<sup>2</sup>= 0.36.
+    </p>
+
+    <p>
+      <h1> Test 1</h1>
+     What is you reward 1 for answering  'Yes, there is a one-eyed minion' when your peer answers 'Yes, there is a one-eyed minion' and predicts that 50% of workers will have the same answers?
+    </p>
+     <form >
+  <input type=radio name="test" id="0" value="0">  50/50=1
+  <br />
+  <input type=radio name="test" id="1" value="1">  1-50%&sup2=0.75
+  <br />
+      <h1> Test 2</h1>
+      What is you reward 2 for predicting that 90% of workers have the same answer as you, but your peer have different answer than you do? </br >
+   <input type=radio name="test2" id="0" value="0">  1-90%&sup2=0.19
+   <br />
+   <input type=radio name="test2" id="1" value="1">  0
+    <br />
+
+    
+
+  <br />
+  <br />
+  
+     <a class="button" onclick="myFunction()" id="submit"> <span>&#10003</span>Submit</a>
+    </form>
+    </section>
+
+    <footer>
+    Game Tutorial Session
+    </footer>
+            
+    </body>
+    </html>
